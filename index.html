@@ -1,0 +1,110 @@
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" >
+  <title>Server date/time</title>
+  <script language="javascript">
+    var sendtime = new Date();
+    function respond(txt) {
+      const recievetime = new Date();
+      const transmittime = (recievetime - sendtime) / 2;
+      const rawserverdatetime = new Date(JSON.parse(txt).datetime);
+      const serverdatetime = new Date(rawserverdatetime - transmittime);
+      const interval = setInterval(() => {
+        const recievetime = new Date();
+        serverdatetime.setMilliseconds(serverdatetime.getMilliseconds() + 500);
+        document.querySelector('h2 div').innerText = recievetime.toString().split(" GMT")[0] + "." + recievetime.getMilliseconds();
+        document.querySelector('h3 div').innerText = serverdatetime.toString().split(" GMT")[0] + "." + serverdatetime.getMilliseconds();
+      }, 500)
+      document.querySelector('h2 div').innerText = recievetime.toString().split(" GMT")[0] + "." + recievetime.getMilliseconds();
+      document.querySelector('h3 div').innerText = serverdatetime.toString().split(" GMT")[0] + "." + serverdatetime.getMilliseconds();
+      document.querySelector('h4 div').innerText = (serverdatetime - recievetime) / 1000 + " 秒";
+      setTimeout(() => { clearInterval(interval); getonlinetime(); }, 2000)
+    }
+    function getonlinetime() {
+      const xmlhttp = new XMLHttpRequest();
+      xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == XMLHttpRequest.DONE) {
+          if (xmlhttp.status == 200) respond(xmlhttp.responseText)
+          else console.log("Error!")
+        }
+      };
+      xmlhttp.open("GET", "https://worldtimeapi.org/api/timezone/Asia/Hong_Kong", true);
+      sendtime = new Date();
+      xmlhttp.send();
+    }
+    getonlinetime()
+  </script>
+  <style>
+    body,
+    html {
+      margin: 0;
+      padding: 0;
+    }
+
+    h2,
+    h3,
+    h4 {
+      position: relative;
+      display: block;
+      width: 90vw;
+      border: 1px solid #cdd1e4;
+      border-radius: 5px;
+      margin: 3vh 5vw;
+      font-size: 1.5rem;
+      padding: 7vh 0;
+      text-align: center;
+    }
+
+    span {
+      position: absolute;
+      top: 1%;
+      left: 1%;
+      margin: 20px;
+      font-size: 1.1rem;
+      border: 1px solid#714d69;
+      padding: 5px;
+      border-radius: 10px;
+      color: #714d69;
+    }
+
+    h1,
+    p {
+      display: block;
+      width: 50vw;
+      margin: 0 25vw;
+      font-size: 1.1rem;
+      text-align: center;
+      border: 1px solid#6c7a89;
+      color: #6c7a89;
+      border-radius: 50px;
+      padding: 10px 0;
+    }
+
+    h1 {
+      width: 80vw;
+      margin: 5vh 10vw;
+      border-radius: 10px;
+      border: 1px solid#714d69;
+      color: #714d69;
+    }
+  </style>
+</head>
+
+<body>
+  <h1> 時間同步查詢 </h1>
+  <h2><span>本機時間</span>
+    <div></div>
+  </h2>
+  <h3><span>網絡時間</span>
+    <div></div>
+  </h3>
+  <h4><span>相差</span>
+    <div></div>
+  </h4>
+  <p> 每 2 秒會與網路伺服器同步一次 </p>
+  <br><br><br><a>註： <br>命令行查詢方式： ntpdate -q stdtime.gov.hk</a>
+</body>
+
+</html>
