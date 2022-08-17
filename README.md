@@ -6,6 +6,10 @@
 * 唔洗裝App，CU啲電腦都用到
 
 ------------------
+### Demo
+![Untitled Project - 01](https://user-images.githubusercontent.com/110673032/185028084-2c52c137-a6e4-4bae-b260-4fc32515746a.gif)
+
+------------------
 ### 警告
 * 最後更新：15/8/2022（若CUSIS更新，此程式可能不適用） <br>
 // CUHK 2022-2023 Sem 1 可用
@@ -48,6 +52,4 @@ https://ansoncheng03.github.io/Cusis-Auto-Reg<br><br>
 *=> 如果你見到 Error **或者** 等左30秒都未見到```等緊夠鐘!!!```呢個Message 就撳Refresh，然後由Step 2再做過～*<br>
 => Refresh 方法： <kbd>⌘</kbd> + <kbd>R</kbd> (Mac) **或** <kbd>Ctrl</kbd> + <kbd>R</kbd> (Windows)<br>
 
-------------------
-### Demo
-![Untitled Project - 01](https://user-images.githubusercontent.com/110673032/185028084-2c52c137-a6e4-4bae-b260-4fc32515746a.gif)
+
