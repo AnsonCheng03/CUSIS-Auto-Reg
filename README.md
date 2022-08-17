@@ -7,8 +7,9 @@
 
 ------------------
 ### Demo
-* ↡ 片嚟 ↡
+* ↡ 片嚟 ↡<br>
 ![Untitled Project - 01](https://user-images.githubusercontent.com/110673032/185028084-2c52c137-a6e4-4bae-b260-4fc32515746a.gif)
+<br>
 * ↟ 片嚟 ↟
 
 ------------------
@@ -39,8 +40,8 @@ https://ansoncheng03.github.io/Cusis-Auto-Reg<br><br>
 * Step 2: 在網址欄輸入```https://cusis.cuhk.edu.hk/psc/CSPRD_newwin/EMPLOYEE/SA/c/SSR_STUDENT_FL.SSR_SHOP_CART_FL.GBL?Page=SSR_SHOP_CART_FL```
 <img width="1171" src="https://user-images.githubusercontent.com/110673032/184585398-073f4b67-3054-44ce-b78e-f099bd0a7292.png">
 
-* Step 3: 點擊 ```滑鼠右鍵``` 再 選擇```檢查``` 再喺右邊個框框頂揀 ```主控台```<br>
-注：直接入到Shopping Cart嗰頁就得。總之你Step 2冇打錯網址就ok～
+* Step 3: 點擊 ```滑鼠右鍵``` 再 選擇```檢查``` 再喺右邊個框框頂揀 ```主控台```<br><br>
+注：喺Shopping Cart嗰頁用。總之你Step 2冇打錯網址就ok～
 <img width="1171" src="https://user-images.githubusercontent.com/110673032/184585802-57e2e55f-bfcc-4496-b332-e10a02eee1b1.png">
 
 * Step 4: 輸入以下代碼，跟住拍 <kbd>Enter</kbd><br><br>
