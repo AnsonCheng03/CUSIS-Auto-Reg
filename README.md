@@ -26,7 +26,7 @@
 * 如電腦時間與天文台時間不一致，請參考香港天文台網頁調整時間。<br>
 https://www.hko.gov.hk/tc/nts/ntime.htm
 * 如有需要，可到以下頁面查詢時間是否準確。<br>
-https://ansoncheng03.github.io/Cusis-Auto-Reg<br><br>
+https://ansoncheng03.github.io/CUSIS-Auto-Reg<br><br>
 * 第一次用嘅話，記得未夠鐘之前試下work唔work先～
 
 ------------------
