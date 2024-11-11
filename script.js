@@ -4,7 +4,7 @@
   if (!overlay) {
     overlay = document.createElement("div");
     overlay.style.position = "fixed";
-    overlay.style.bottom = "0";
+    overlay.style.top = "35vh";
     overlay.style.left = "0";
     overlay.style.width = "100%";
     overlay.style.maxHeight = "30vh";
