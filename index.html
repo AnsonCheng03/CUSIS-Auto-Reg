@@ -1,110 +1,168 @@
-<html>
+<!DOCTYPE html>
+<html lang="zh-HK">
 
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" >
-  <title>Server date/time</title>
-  <script language="javascript">
-    var sendtime = new Date();
-    function respond(txt) {
-      const recievetime = new Date();
-      const transmittime = (recievetime - sendtime) / 2;
-      const rawserverdatetime = new Date(JSON.parse(txt).datetime);
-      const serverdatetime = new Date(rawserverdatetime - transmittime);
-      const interval = setInterval(() => {
-        const recievetime = new Date();
-        serverdatetime.setMilliseconds(serverdatetime.getMilliseconds() + 500);
-        document.querySelector('h2 div').innerText = recievetime.toString().split(" GMT")[0] + "." + recievetime.getMilliseconds();
-        document.querySelector('h3 div').innerText = serverdatetime.toString().split(" GMT")[0] + "." + serverdatetime.getMilliseconds();
-      }, 500)
-      document.querySelector('h2 div').innerText = recievetime.toString().split(" GMT")[0] + "." + recievetime.getMilliseconds();
-      document.querySelector('h3 div').innerText = serverdatetime.toString().split(" GMT")[0] + "." + serverdatetime.getMilliseconds();
-      document.querySelector('h4 div').innerText = (serverdatetime - recievetime) / 1000 + " 秒";
-      setTimeout(() => { clearInterval(interval); getonlinetime(); }, 2000)
-    }
-    function getonlinetime() {
-      const xmlhttp = new XMLHttpRequest();
-      xmlhttp.onreadystatechange = function () {
-        if (xmlhttp.readyState == XMLHttpRequest.DONE) {
-          if (xmlhttp.status == 200) respond(xmlhttp.responseText)
-          else console.log("Error!")
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookmarklet 操作說明</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+            color: #333;
         }
-      };
-      xmlhttp.open("GET", "https://worldtimeapi.org/api/timezone/Asia/Hong_Kong", true);
-      sendtime = new Date();
-      xmlhttp.send();
-    }
-    getonlinetime()
-  </script>
-  <style>
-    body,
-    html {
-      margin: 0;
-      padding: 0;
-    }
 
-    h2,
-    h3,
-    h4 {
-      position: relative;
-      display: block;
-      width: 90vw;
-      border: 1px solid #cdd1e4;
-      border-radius: 5px;
-      margin: 3vh 5vw;
-      font-size: 1.5rem;
-      padding: 7vh 0;
-      text-align: center;
-    }
+        h1,
+        h2 {
+            text-align: center;
+            color: #4CAF50;
+        }
 
-    span {
-      position: absolute;
-      top: 1%;
-      left: 1%;
-      margin: 20px;
-      font-size: 1.1rem;
-      border: 1px solid#714d69;
-      padding: 5px;
-      border-radius: 10px;
-      color: #714d69;
-    }
+        .menu {
+            text-align: center;
+            margin-bottom: 20px;
+        }
 
-    h1,
-    p {
-      display: block;
-      width: 50vw;
-      margin: 0 25vw;
-      font-size: 1.1rem;
-      text-align: center;
-      border: 1px solid#6c7a89;
-      color: #6c7a89;
-      border-radius: 50px;
-      padding: 10px 0;
-    }
+        select {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
 
-    h1 {
-      width: 80vw;
-      margin: 5vh 10vw;
-      border-radius: 10px;
-      border: 1px solid#714d69;
-      color: #714d69;
-    }
-  </style>
+        .section {
+            display: none;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            padding: 20px;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        button.copy-button {
+            display: block;
+            margin: 10px auto;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        button.copy-button:hover {
+            background-color: #45a049;
+        }
+
+        code {
+            display: block;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 14px;
+            word-wrap: break-word;
+            overflow-x: auto;
+        }
+
+        ol {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #777;
+            font-size: 14px;
+        }
+    </style>
+    <script>
+        function showSection(os) {
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            if (os) {
+                document.getElementById(os).classList.add('active');
+            }
+        }
+
+        function copyCode(os) {
+            const code = document.getElementById(`${os}-code`).innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                alert('代碼已複製到剪貼簿！');
+            }).catch(() => {
+                alert('複製失敗，請手動選取並複製代碼。');
+            });
+        }
+    </script>
 </head>
 
 <body>
-  <h1> 時間同步查詢 </h1>
-  <h2><span>本機時間</span>
-    <div></div>
-  </h2>
-  <h3><span>網絡時間</span>
-    <div></div>
-  </h3>
-  <h4><span>相差</span>
-    <div></div>
-  </h4>
-  <p> 每 2 秒會與網路伺服器同步一次 </p>
-  <br><br><br><a>註： <br>命令行查詢方式： ntpdate -q stdtime.gov.hk</a>
+    <h1>Bookmarklet 操作說明</h1>
+    <div class="menu">
+        <label for="os-select">選擇您的操作系統：</label>
+        <select id="os-select" onchange="showSection(this.value)">
+            <option value="">-- 選擇 --</option>
+            <option value="desktop">桌面瀏覽器</option>
+            <option value="ios">iOS / iPadOS</option>
+            <option value="android">Android</option>
+        </select>
+    </div>
+
+    <div id="desktop" class="section">
+        <h2>桌面瀏覽器（Google Chrome）</h2>
+        <p>請將以下代碼複製並建立新書籤：</p>
+        <code id="desktop-code">
+            javascript:(function(){var script=document.createElement('script');script.src='https://ansoncheng03.github.io/CUSIS-Auto-Reg/script.js?time=' + new Date().getTime();document.body.appendChild(script);})();
+        </code>
+        <button class="copy-button" onclick="copyCode('desktop')">複製代碼</button>
+        <p>進入 CUSIS 購物車頁面後，點擊書籤啟動自動登記功能。</p>
+    </div>
+
+    <div id="ios" class="section">
+        <h2>iOS / iPadOS（Safari）</h2>
+        <p>複製以下代碼並保存到書籤：</p>
+        <code id="ios-code">
+            javascript:(function(){var script=document.createElement('script');script.src='https://ansoncheng03.github.io/CUSIS-Auto-Reg/script.js?time=' + new Date().getTime();document.body.appendChild(script);})();
+        </code>
+        <button class="copy-button" onclick="copyCode('ios')">複製代碼</button>
+        <ol>
+            <li>使用 Safari 瀏覽器開啟此頁面，複製代碼後點擊分享按鈕 → 「加入書籤」。</li>
+            <li>編輯書籤並將網址替換為代碼，然後儲存變更。</li>
+            <li>進入 CUSIS 購物車頁面後，點擊書籤啟動功能。</li>
+        </ol>
+    </div>
+
+    <div id="android" class="section">
+        <h2>Android（Google Chrome）</h2>
+        <p>將以下代碼複製並添加到書籤：</p>
+        <code id="android-code">
+            javascript:(function(){var script=document.createElement('script');script.src='https://ansoncheng03.github.io/CUSIS-Auto-Reg/script.js?time=' + new Date().getTime();document.body.appendChild(script);})();
+        </code>
+        <button class="copy-button" onclick="copyCode('android')">複製代碼</button>
+        <ol>
+            <li>使用 Chrome 瀏覽器開啟此頁面，複製代碼後點擊右上角功能表（⋮）→ 加入書籤。</li>
+            <li>編輯書籤並將網址替換為代碼，然後儲存。</li>
+            <li>進入 CUSIS 購物車頁面後，點擊書籤啟動功能。</li>
+        </ol>
+    </div>
+
+    <div class="footer">
+        &copy; 2024 Anson Cheng - 操作說明
+    </div>
 </body>
 
 </html>
