@@ -1,5 +1,7 @@
 # CUSIS自動Reg科
 
+## [在手機執行](https://ansoncheng03.github.io/CUSIS-Auto-Reg/)
+
 ### 說明
 * 幫你夠鐘自動click個reg科制
 * 應該會快過你望住個鐘撳
@@ -31,7 +33,7 @@ https://ansoncheng03.github.io/CUSIS-Auto-Reg<br><br>
 * 第一次用嘅話，記得未夠鐘之前試下work唔work先～
 
 ------------------
-
+## [在手機執行](https://ansoncheng03.github.io/CUSIS-Auto-Reg/)
 ### 使用步驟
 * Step 1: 前往 ```https://cusis.cuhk.edu.hk/``` 並登入CUSIS<br><br>
 *=> 最好距離reg科時間15分鐘內先login，唔係有機會自動logout。*
@@ -53,6 +55,7 @@ https://ansoncheng03.github.io/CUSIS-Auto-Reg<br><br>
 
 
 * 完成～<br>
+## [在手機執行](https://ansoncheng03.github.io/CUSIS-Auto-Reg/)
 *=> 如果你見到 Error **或者** 等左30秒都未見到```等緊夠鐘!!!```呢個Message 就撳Refresh，然後由Step 2再做過～*<br>
 => Refresh 方法： <kbd>⌘</kbd> + <kbd>R</kbd> (Mac) **或** <kbd>Ctrl</kbd> + <kbd>R</kbd> (Windows)<br>
 
